@@ -56,7 +56,7 @@ class _BottomNavigationBarExampleState
       // here will be two new view model and view
     ),
     const Scaffold(
-      body: Center(child: Text('This will be the Library')),
+      body: Center(child: Text('This will be the Library pleease')),
       //same here
     ),
   ];
