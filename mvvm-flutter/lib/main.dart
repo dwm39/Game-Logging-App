@@ -52,7 +52,7 @@ class _BottomNavigationBarExampleState
           child: const MovieListView(),
         )),
     const Scaffold(
-      body: Center(child: Text('This will be the add')),
+      body: Center(child: Text('This will be the add testing one more')),
       // here will be two new view model and view
     ),
     const Scaffold(
