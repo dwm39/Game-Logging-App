@@ -52,6 +52,7 @@ class _MovieListViewState extends State<MovieListView> {
                       border: InputBorder.none),
                 ),
               ),
+
               Expanded(
                   child: MovieList(
                       movies: vm.movies)) //we will create this further down
