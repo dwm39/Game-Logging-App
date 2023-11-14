@@ -1,16 +1,23 @@
 import 'dart:convert';
-import 'package:mvvm_flutter/models/movie.dart';
+import 'package:mvvm_flutter/models/video_game.dart';
 import 'package:http/http.dart' as http;
 
 class Webservice {
   // why is the question
-  Future<List<Movie>> fetchMovies(String keyword) async {
-    String url = "http://www.omdbapi.com/?s=$keyword&apikey=eb0d5538";
-    final response = await http.get(Uri.parse(url));
+  Future<List<VideoGame>> fetchMovies(String keyword) async {
+    String url =
+        "https://api.igdb.com/v4/games?search=$keyword&fields=name,release_dates.human,rating,cover.url&limit=50";
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        "Client-ID": "e12emyr01qnr2rpev2ez8v7ixo1gzq",
+        "Authorization": "Bearer ehqka6bhofnxbkgta0blvdr09uwl5r"
+      },
+    );
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
-      final Iterable json = body["Search"];
-      return json.map((movie) => Movie.fromJson(movie)).toList();
+      final Iterable json = body;
+      return json.map((movie) => VideoGame.fromJson(movie)).toList();
     } else {
       throw Exception("Unable to perform request!");
     }

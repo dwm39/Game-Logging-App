@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_flutter/viewmodels/movies_list_view_model.dart';
+import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 
 /// Flutter code sample for [ElevatedButton].
 

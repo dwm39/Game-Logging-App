@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_flutter/viewmodels/movies_list_view_model.dart';
-import 'package:mvvm_flutter/widgets/movies_list.dart';
+import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
+import 'package:mvvm_flutter/widgets/games_list.dart';
 
 import 'package:provider/provider.dart';
 
-class MovieListView extends StatefulWidget {
-  const MovieListView({super.key});
+class GameListView extends StatefulWidget {
+  const GameListView({super.key});
 
   @override
-  _MovieListViewState createState() => _MovieListViewState();
+  _GameListViewState createState() => _GameListViewState();
 }
 
-class _MovieListViewState extends State<MovieListView> {
+class _GameListViewState extends State<GameListView> {
   final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    Provider.of<MovieListViewModel>(context, listen: false)
-        .fetchMovies("iron man");
+    Provider.of<VideoGamesListViewModel>(context, listen: false)
+        .fetchMovies("pikmin");
 //you can use anything you like or not use anything here. I call it just to have a content on the screen rather than having a blank screen
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<MovieListViewModel>(context);
+    final vm = Provider.of<VideoGamesListViewModel>(context);
 
     return Scaffold(
         body: Container(
@@ -54,8 +54,8 @@ class _MovieListViewState extends State<MovieListView> {
               ),
 
               Expanded(
-                  child: MovieList(
-                      movies: vm.movies)) //we will create this further down
+                  child: GameList(
+                      games: vm.videogames)) //we will create this further down
             ])));
   }
 }

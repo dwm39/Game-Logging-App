@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_flutter/viewmodels/movie_view_model.dart';
+import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:mvvm_flutter/views/single_game_view.dart';
 
-class MovieList extends StatelessWidget {
-  final List<MovieViewModel> movies;
+class GameList extends StatelessWidget {
+  final List<VideoGameViewModel> games;
 
-  const MovieList({super.key, required this.movies});
+  const GameList({super.key, required this.games});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: movies.length,
+      itemCount: games.length,
       itemBuilder: (context, index) {
-        final movie = movies[index];
+        final movie = games[index];
 
         return ListTile(
             contentPadding: const EdgeInsets.all(10),

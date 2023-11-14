@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mvvm_flutter/views/movies_list_view.dart';
-import 'package:mvvm_flutter/viewmodels/movies_list_view_model.dart';
+import 'package:mvvm_flutter/views/video_games_list_view.dart';
+import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(const App());
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.teal),
         home: ChangeNotifierProvider(
-          create: (context) => MovieListViewModel(),
+          create: (context) => VideoGamesListViewModel(),
           child: const BottomNavigationBarExample(),
         ));
   }
@@ -48,8 +48,8 @@ class _BottomNavigationBarExampleState
     MaterialApp(
         debugShowCheckedModeBanner: false,
         home: ChangeNotifierProvider(
-          create: (context) => MovieListViewModel(),
-          child: const MovieListView(),
+          create: (context) => VideoGamesListViewModel(),
+          child: const GameListView(),
         )),
     const Scaffold(
       body: Center(child: Text('This will be the add testing one more')),
