@@ -12,20 +12,20 @@ class GameList extends StatelessWidget {
     return ListView.builder(
       itemCount: games.length,
       itemBuilder: (context, index) {
-        final movie = games[index];
+        final game = games[index];
 
         return ListTile(
             contentPadding: const EdgeInsets.all(10),
             leading: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: NetworkImage(movie.poster)),
+                      fit: BoxFit.cover, image: NetworkImage(game.poster)),
                   borderRadius: BorderRadius.circular(6)),
               width: 50,
               height: 1000,
             ),
-            title: Text(movie.title),
-            subtitle: Text(movie.releaseDate),
+            title: Text(game.title),
+            subtitle: Text(game.releaseDate),
             isThreeLine: true,
             onTap: () {
               Navigator.push(

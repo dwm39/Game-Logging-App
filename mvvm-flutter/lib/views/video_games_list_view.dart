@@ -18,8 +18,7 @@ class _GameListViewState extends State<GameListView> {
   void initState() {
     super.initState();
     Provider.of<VideoGamesListViewModel>(context, listen: false)
-        .fetchMovies("pikmin");
-//you can use anything you like or not use anything here. I call it just to have a content on the screen rather than having a blank screen
+        .fetchMovies("pikmin"); // pikmin is filler here, can use whatever
   }
 
   @override
@@ -32,6 +31,7 @@ class _GameListViewState extends State<GameListView> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Column(children: <Widget>[
+              // search bar
               Container(
                 padding: const EdgeInsets.only(left: 10),
                 decoration: BoxDecoration(

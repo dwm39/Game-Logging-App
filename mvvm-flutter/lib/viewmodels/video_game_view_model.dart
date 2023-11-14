@@ -16,4 +16,8 @@ class VideoGameViewModel {
   String get releaseDate {
     return game.releaseDate;
   }
+
+  String get synopsis {
+    return game.synopsis;
+  }
 }
