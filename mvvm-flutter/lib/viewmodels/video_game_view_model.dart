@@ -12,4 +12,8 @@ class VideoGameViewModel {
   String get poster {
     return game.posterUrl;
   }
+
+  String get releaseDate {
+    return game.releaseDate;
+  }
 }

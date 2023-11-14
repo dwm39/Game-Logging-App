@@ -22,9 +22,11 @@ class GameList extends StatelessWidget {
                       fit: BoxFit.cover, image: NetworkImage(movie.poster)),
                   borderRadius: BorderRadius.circular(6)),
               width: 50,
-              height: 100,
+              height: 1000,
             ),
             title: Text(movie.title),
+            subtitle: Text(movie.releaseDate),
+            isThreeLine: true,
             onTap: () {
               Navigator.push(
                 context,
