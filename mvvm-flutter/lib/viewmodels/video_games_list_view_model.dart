@@ -11,10 +11,4 @@ class VideoGamesListViewModel extends ChangeNotifier {
     videogames = results.map((item) => VideoGameViewModel(game: item)).toList();
     notifyListeners();
   }
-
-  Future<void> fetchGameDetails(String igdbID) async {
-    final results = await Webservice().fetchGameDetails(igdbID);
-    videoGameDetails = VideoGameViewModel(videoGameDetails: results);
-    notifyListeners();
-  }
 }

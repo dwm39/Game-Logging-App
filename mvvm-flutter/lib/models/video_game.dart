@@ -1,10 +1,12 @@
 class VideoGame {
+  final int id;
   final String title;
   final String posterUrl;
   final String releaseDate;
   final String synopsis;
 
   VideoGame({
+    required this.id,
     required this.title,
     required this.posterUrl,
     required this.releaseDate,
@@ -27,6 +29,7 @@ class VideoGame {
     }
 
     return VideoGame(
+      id: json["id"],
       title: json["name"],
       posterUrl: 'http:$jsonStuff',
       releaseDate: releaseDateHuman,

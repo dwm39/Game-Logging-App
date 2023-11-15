@@ -32,6 +32,7 @@ class GameList extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => const ElevatedButtonExampleApp()),
+                // builder: (context) => SingleGameView(1024)),
               );
             });
       },

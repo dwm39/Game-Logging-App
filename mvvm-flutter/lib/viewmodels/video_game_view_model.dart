@@ -5,6 +5,10 @@ class VideoGameViewModel {
 
   VideoGameViewModel({required this.game});
 
+  int get id {
+    return game.id;
+  }
+
   String get title {
     return game.title;
   }

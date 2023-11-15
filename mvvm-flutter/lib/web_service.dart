@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:mvvm_flutter/models/video_game.dart';
+import 'package:mvvm_flutter/models/video_game_details.dart';
 import 'package:http/http.dart' as http;
 
 class Webservice {
@@ -23,7 +24,7 @@ class Webservice {
     }
   }
 
-  Future<VideoGame> fetchGameDetails(String igdbID) async {
+  Future<VideoGameDetails> fetchVideoGameDetails(int igdbID) async {
     String url =
         "https://api.igdb.com/v4/games?search=$igdbID&fields=name,url,release_dates.human,summary,rating,cover.url&limit=50";
     final response = await http.get(
@@ -35,7 +36,7 @@ class Webservice {
     );
     if (response.statusCode == 200) {
       final body = jsonDecode(response.body);
-      final videoGameDetails = VideoGame.fromJson(body);
+      final videoGameDetails = VideoGameDetails.fromJson(body);
       return videoGameDetails;
     } else {
       throw Exception("Unable to perform request!");
