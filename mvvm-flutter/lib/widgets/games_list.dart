@@ -28,13 +28,7 @@ class GameList extends StatelessWidget {
             subtitle: Text(game.releaseDate),
             isThreeLine: true,
             onTap: () {
-              Navigator.pushNamed(
-                  context,
-                  // MaterialPageRoute(
-                  //     //builder: (context) => const ElevatedButtonExampleApp()),
-                  //     builder: (context) => SingleGameView(1024)),
-                  '/details',
-                  arguments: game.id);
+              Navigator.pushNamed(context, '/details', arguments: game.id);
             });
       },
     );

@@ -5,20 +5,40 @@ import 'package:provider/provider.dart';
 
 import 'router.dart' as LocalRouter;
 
-void main() => runApp(const App());
+void main() => runApp(App());
+
+// class App extends StatelessWidget {
+//   const App({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(primarySwatch: Colors.teal),
+//       home: ChangeNotifierProvider(
+//         create: (context) => VideoGamesListViewModel(),
+//         child: const BottomNavigationBarExample(),
+//       ),
+//       onGenerateRoute: LocalRouter.Router.generateRoute,
+//       initialRoute: '/',
+//     );
+//   }
+// }
 
 class App extends StatelessWidget {
-  const App({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.teal),
-        home: ChangeNotifierProvider(
-          create: (context) => VideoGamesListViewModel(),
-          child: const BottomNavigationBarExample(),
-        ));
+      title: "We Are Gaming",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: ChangeNotifierProvider(
+        create: (context) => VideoGamesListViewModel(),
+        child: GameListView(),
+      ),
+      onGenerateRoute: LocalRouter.Router.generateRoute,
+      initialRoute: '/',
+    );
   }
 }
 

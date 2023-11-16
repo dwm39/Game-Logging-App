@@ -68,7 +68,6 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
 // ===========================================================================
 
 class SingleGameView extends StatefulWidget {
-  // final String igdbID;
   final int igdbID;
 
   SingleGameView(this.igdbID);
@@ -125,7 +124,7 @@ class _SingleGameViewState extends State<SingleGameView> {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
-                    "Actors:",
+                    "Release Date:",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: fontSize),
                   ),
@@ -142,7 +141,7 @@ class _SingleGameViewState extends State<SingleGameView> {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
-                    "Directors:",
+                    "Summary:",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: fontSize),
                   ),
@@ -150,7 +149,9 @@ class _SingleGameViewState extends State<SingleGameView> {
                 Padding(
                   padding: EdgeInsets.all(2),
                   child: Text(
-                    vm.details != null ? vm.details!.summary : "",
+                    vm.details != null
+                        ? vm.details!.summary
+                        : "vm.details is null",
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
