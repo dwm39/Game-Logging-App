@@ -107,7 +107,12 @@ class _SingleGameViewState extends State<SingleGameView> {
         appBar: AppBar(title: const Text('Single Game View')),
         body: Column(children: [
           Container(height: 50),
-          // Image(image: FileImage(File('lib/views/pikmin.jpg'))),
+          // Image(image: AssetImage('lib/images/pikmin.jpg')),
+          Image.asset(
+            'lib/images/pikmin.jpg',
+            height: 200,
+            width: 200,
+          ),
           Table(
             columnWidths: const <int, TableColumnWidth>{
               0: IntrinsicColumnWidth(),
