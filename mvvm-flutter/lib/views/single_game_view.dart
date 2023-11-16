@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_details_view_model.dart';
@@ -76,19 +78,28 @@ class SingleGameView extends StatefulWidget {
   _SingleGameViewState createState() => _SingleGameViewState();
 }
 
+// This is fake game data. Replace this.
+class FakeGameData {
+  final String title = "Pikmin 4";
+  final String releaseDate = "12-34-56";
+  final String summary =
+      "This is a game about Pikmin. They are small little fellers with flowere :D";
+}
+
 class _SingleGameViewState extends State<SingleGameView> {
   final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    Provider.of<VideoGameInfoViewModel>(context, listen: false)
-        .fetchVideoGameDetails(widget.igdbID);
+    // Provider.of<VideoGameInfoViewModel>(context, listen: false)
+    //     .fetchVideoGameDetails(widget.igdbID);
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<VideoGameInfoViewModel>(context);
+    final vm = FakeGameData();
+    //Provider.of<VideoGameInfoViewModel>(context);
 
     const fontSize = 16.0;
 
@@ -96,6 +107,7 @@ class _SingleGameViewState extends State<SingleGameView> {
         appBar: AppBar(title: const Text('Single Game View')),
         body: Column(children: [
           Container(height: 50),
+          // Image(image: FileImage(File('lib/views/pikmin.jpg'))),
           Table(
             columnWidths: const <int, TableColumnWidth>{
               0: IntrinsicColumnWidth(),
@@ -115,7 +127,8 @@ class _SingleGameViewState extends State<SingleGameView> {
                 Padding(
                   padding: EdgeInsets.all(2),
                   child: Text(
-                    vm.details != null ? vm.details!.title : "",
+                    // vm.details != null ? vm.details!.title : "",
+                    vm.title,
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
@@ -132,7 +145,8 @@ class _SingleGameViewState extends State<SingleGameView> {
                 Padding(
                   padding: EdgeInsets.all(2),
                   child: Text(
-                    vm.details != null ? vm.details!.releaseDate : "",
+                    // vm.details != null ? vm.details!.releaseDate : "",
+                    vm.releaseDate,
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
@@ -149,15 +163,18 @@ class _SingleGameViewState extends State<SingleGameView> {
                 Padding(
                   padding: EdgeInsets.all(2),
                   child: Text(
-                    vm.details != null
-                        ? vm.details!.summary
-                        : "vm.details is null",
+                    // vm.details != null
+                    //     ? vm.details!.summary
+                    //     : "vm.details is null",
+                    vm.summary,
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
               ]),
             ],
           ),
+          Container(height: 150),
+          const ElevatedButtonExample()
         ]));
   }
 }
