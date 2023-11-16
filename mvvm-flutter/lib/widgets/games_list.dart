@@ -34,7 +34,7 @@ class GameList extends StatelessWidget {
                   //     //builder: (context) => const ElevatedButtonExampleApp()),
                   //     builder: (context) => SingleGameView(1024)),
                   '/details',
-                  arguments: game.id);
+                  arguments: game);
             });
       },
     );

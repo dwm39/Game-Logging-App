@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:mvvm_flutter/models/video_game.dart';
 
 class VideoGameViewModel {
@@ -23,5 +24,9 @@ class VideoGameViewModel {
 
   String get synopsis {
     return game.synopsis;
+  }
+
+  String get summary {
+    return game.summary;
   }
 }

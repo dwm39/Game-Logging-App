@@ -4,6 +4,7 @@ class VideoGame {
   final String posterUrl;
   final String releaseDate;
   final String synopsis;
+  final String summary;
 
   VideoGame({
     required this.id,
@@ -11,6 +12,7 @@ class VideoGame {
     required this.posterUrl,
     required this.releaseDate,
     required this.synopsis,
+    required this.summary,
   });
 
   factory VideoGame.fromJson(Map<String, dynamic> json) {
@@ -18,22 +20,22 @@ class VideoGame {
     if (json["release_dates"] != null) {
       releaseDateHuman = json["release_dates"][0]["human"];
     }
-    String? jsonStuff;
+    String jsonStuff = "//demofree.sirv.com/nope-not-here.jpg";
     if (json["cover"] != null) {
       jsonStuff = json["cover"]["url"];
+      jsonStuff = jsonStuff.replaceFirst('t_thumb', 't_1080p');
     }
-    jsonStuff ??= "//demofree.sirv.com/nope-not-here.jpg";
     String summary = "";
     if (json["summary"] != null) {
       summary = json["summary"];
     }
 
     return VideoGame(
-      id: json["id"],
-      title: json["name"],
-      posterUrl: 'http:$jsonStuff',
-      releaseDate: releaseDateHuman,
-      synopsis: summary,
-    );
+        id: json["id"],
+        title: json["name"],
+        posterUrl: 'http:$jsonStuff',
+        releaseDate: releaseDateHuman,
+        synopsis: summary,
+        summary: summary);
   }
 }
