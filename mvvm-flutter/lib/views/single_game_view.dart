@@ -104,10 +104,10 @@ class _SingleGameViewState extends State<SingleGameView> {
     const fontSize = 16.0;
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Single Game View')),
+        appBar: AppBar(title: Text(vm.title)),
         body: Column(children: [
           Container(height: 50),
-          // Image(image: AssetImage('lib/images/pikmin.jpg')),
+          // Image(image: FileImage(File('lib/views/pikmin.jpg'))),
           Image.asset(
             'lib/images/pikmin.jpg',
             height: 200,

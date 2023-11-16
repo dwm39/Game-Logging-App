@@ -29,12 +29,11 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "We Are Gaming",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.teal),
       home: ChangeNotifierProvider(
         create: (context) => VideoGamesListViewModel(),
-        child: GameListView(),
+        child: const BottomNavigationBarExample(),
       ),
       onGenerateRoute: LocalRouter.Router.generateRoute,
       initialRoute: '/',
@@ -69,12 +68,11 @@ class _BottomNavigationBarExampleState
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   final List<Widget> _widgetOptions = <Widget>[
-    MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: ChangeNotifierProvider(
-          create: (context) => VideoGamesListViewModel(),
-          child: const GameListView(),
-        )),
+    Scaffold(
+        body: ChangeNotifierProvider(
+      create: (context) => VideoGamesListViewModel(),
+      child: const GameListView(),
+    )),
     const Scaffold(
       body: Center(child: Text('This will be the add testing one more')),
       // here will be two new view model and view
@@ -94,9 +92,6 @@ class _BottomNavigationBarExampleState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('We Are Gaming'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

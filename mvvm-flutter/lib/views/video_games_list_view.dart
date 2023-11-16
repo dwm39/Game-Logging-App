@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/widgets/games_list.dart';
 
+import 'package:mvvm_flutter/main.dart';
 import 'package:provider/provider.dart';
 
 class GameListView extends StatefulWidget {
@@ -26,7 +27,7 @@ class _GameListViewState extends State<GameListView> {
     final vm = Provider.of<VideoGamesListViewModel>(context);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('List View')),
+        appBar: AppBar(title: const Text('Popular Games')),
         body: Container(
             padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width,
@@ -56,7 +57,7 @@ class _GameListViewState extends State<GameListView> {
 
               Expanded(
                   child: GameList(
-                      games: vm.videogames)) //we will create this further down
+                      games: vm.videogames)), //we will create this further down
             ])));
   }
 }
