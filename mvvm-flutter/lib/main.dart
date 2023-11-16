@@ -3,6 +3,8 @@ import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:provider/provider.dart';
 
+import 'router.dart' as LocalRouter;
+
 void main() => runApp(const App());
 
 class App extends StatelessWidget {
@@ -27,6 +29,8 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: BottomNavigationBarExample(),
+      onGenerateRoute: LocalRouter.Router.generateRoute,
+      initialRoute: '/',
     );
   }
 }
