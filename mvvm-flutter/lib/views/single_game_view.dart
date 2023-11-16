@@ -81,9 +81,9 @@ class SingleGameView extends StatefulWidget {
 // This is fake game data. Replace this.
 class FakeGameData {
   final String title = "Pikmin 4";
-  final String releaseDate = "12-34-56";
+  final String releaseDate = "July 21, 2023";
   final String summary =
-      "This is a game about Pikmin. They are small little fellers with flowere :D";
+      "Apparently diverging from the events of the prior installments, Captain Olimar travels to PNF-404, an Earth-like planet, aboard his ship the SS Dolphin. A freak accident causes his ship to crash land, and he is forced to recruit Pikmin to help him find the ship's missing parts.";
 }
 
 class _SingleGameViewState extends State<SingleGameView> {
