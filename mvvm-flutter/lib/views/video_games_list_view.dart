@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/widgets/games_list.dart';
 
-import 'package:mvvm_flutter/main.dart';
 import 'package:provider/provider.dart';
 
 class GameListView extends StatefulWidget {

@@ -14,7 +14,7 @@ class Router {
         return MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider(
                   create: (context) => VideoGamesListViewModel(),
-                  child: GameListView(),
+                  child: const GameListView(),
                 ));
       case '/details':
         var oneGame = settings.arguments as VideoGameViewModel;

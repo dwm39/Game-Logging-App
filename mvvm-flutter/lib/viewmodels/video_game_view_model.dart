@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:mvvm_flutter/models/video_game.dart';
 
 class VideoGameViewModel {

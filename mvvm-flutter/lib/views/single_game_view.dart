@@ -1,13 +1,10 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
-import 'package:mvvm_flutter/widgets/games_list.dart';
-import 'package:provider/provider.dart';
 
 class SingleGameView extends StatelessWidget {
   final VideoGameViewModel oneGame;
 
-  SingleGameView(this.oneGame);
+  const SingleGameView(this.oneGame, {super.key});
   @override
   Widget build(BuildContext context) {
     final vm = oneGame;
@@ -43,7 +40,7 @@ class SingleGameView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
                     // vm.details != null ? vm.details!.title : "",
                     vm.title,
@@ -61,7 +58,7 @@ class SingleGameView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
                     // vm.details != null ? vm.details!.releaseDate : "",
                     vm.releaseDate,
@@ -79,7 +76,7 @@ class SingleGameView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
                     // vm.details != null
                     //     ? vm.details!.summary

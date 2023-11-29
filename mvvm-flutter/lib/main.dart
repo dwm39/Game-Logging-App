@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'router.dart' as LocalRouter;
 
-void main() => runApp(App());
+void main() => runApp(const App());
 
 // class App extends StatelessWidget {
 //   const App({super.key});
@@ -26,6 +26,8 @@ void main() => runApp(App());
 // }
 
 class App extends StatelessWidget {
+  const App({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
