@@ -26,7 +26,7 @@ class _GameListViewState extends State<GameListView> {
     final vm = Provider.of<VideoGamesListViewModel>(context);
 
     return Scaffold(
-        appBar: AppBar(title: const Text('Testing Games')),
+        appBar: AppBar(title: const Text('Testing1 Games')),
         body: Container(
             padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width,
