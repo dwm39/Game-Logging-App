@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
+import 'package:mvvm_flutter/views/add_view.dart';
 import 'package:provider/provider.dart';
 
 import 'router.dart' as LocalRouter;
@@ -75,10 +76,11 @@ class _BottomNavigationBarExampleState
       create: (context) => VideoGamesListViewModel(),
       child: const GameListView(),
     )),
-    const Scaffold(
-      body: Center(child: Text('This will be the add testing one more')),
-      // here will be two new view model and view
-    ),
+    Scaffold(
+        body: ChangeNotifierProvider(
+      create: (context) => VideoGamesListViewModel(),
+      child: const AddView(),
+    )),
     const Scaffold(
       body: Center(child: Text('This will be the Library pleease')),
       //same here

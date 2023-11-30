@@ -28,4 +28,8 @@ class VideoGameViewModel {
   String get summary {
     return game.summary;
   }
+
+  String get rating {
+    return game.rating;
+  }
 }

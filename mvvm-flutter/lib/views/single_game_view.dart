@@ -9,7 +9,6 @@ class SingleGameView extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = oneGame;
     //Provider.of<VideoGameInfoViewModel>(context);
-
     const fontSize = 16.0;
 
     return Scaffold(
@@ -44,6 +43,23 @@ class SingleGameView extends StatelessWidget {
                   child: Text(
                     // vm.details != null ? vm.details!.title : "",
                     vm.title,
+                    style: const TextStyle(fontSize: fontSize),
+                  ),
+                ),
+              ]),
+              TableRow(children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  child: Text(
+                    "Rating:",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: fontSize),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    vm.rating,
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
