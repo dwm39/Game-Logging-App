@@ -3,6 +3,7 @@ import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/views/single_game_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
+import 'package:mvvm_flutter/widgets/add_list.dart';
 import 'package:provider/provider.dart';
 
 //import 'constants.dart';
@@ -25,6 +26,7 @@ class Router {
                   create: (context) => VideoGamesListViewModel(),
                   child: SingleGameView(oneGame),
                 ));
+
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

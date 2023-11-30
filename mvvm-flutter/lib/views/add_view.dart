@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
+import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/widgets/add_list.dart';
 
 import 'package:provider/provider.dart';
@@ -8,22 +9,22 @@ class AddView extends StatefulWidget {
   const AddView({super.key});
 
   @override
-  _GameListViewState createState() => _GameListViewState();
+  _AddListViewState createState() => _AddListViewState();
 }
 
-class _GameListViewState extends State<AddView> {
+class _AddListViewState extends State<AddView> {
   final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    Provider.of<VideoGamesListViewModel>(context, listen: false)
-        .fetchMovies(""); // pikmin is filler here, can use whatever
+    Provider.of<AddGamesListViewModel>(context, listen: false)
+        .fetchMovies("mario"); // pikmin is filler here, can use whatever
   }
 
   @override
   Widget build(BuildContext context) {
-    final vm = Provider.of<VideoGamesListViewModel>(context);
+    final vm = Provider.of<AddGamesListViewModel>(context);
 
     return Scaffold(
         appBar: AppBar(title: const Text('Add Games')),

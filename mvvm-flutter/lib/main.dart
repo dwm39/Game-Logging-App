@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
+import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/views/add_view.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +79,7 @@ class _BottomNavigationBarExampleState
     )),
     Scaffold(
         body: ChangeNotifierProvider(
-      create: (context) => VideoGamesListViewModel(),
+      create: (context) => AddGamesListViewModel(),
       child: const AddView(),
     )),
     const Scaffold(
