@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/widgets/add_list.dart';
@@ -56,8 +57,9 @@ class _AddListViewState extends State<AddView> {
               ),
 
               Expanded(
-                  child: AddList(
-                      games: vm.videogames)), //we will create this further down
+                child: AddList(
+                    games: vm.videogames), //we will create this further down
+              )
             ])));
   }
 }

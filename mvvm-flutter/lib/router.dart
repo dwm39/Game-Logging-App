@@ -32,12 +32,13 @@ class Router {
       case '/add':
         final game = settings.arguments as VideoGameViewModel;
         return MaterialPageRoute(
-            builder: (_) =>
-                //Feed(imdbID));
-                ChangeNotifierProvider(
-                  create: (context) => AddGamesListViewModel(),
-                  child: AddGameView(oneGame: game),
-                ));
+          builder: (_) =>
+              //Feed(imdbID));
+              ChangeNotifierProvider(
+            create: (context) => AddGamesListViewModel(),
+            child: AddGameView(oneGame: game),
+          ),
+        );
 
       default:
         return MaterialPageRoute(
