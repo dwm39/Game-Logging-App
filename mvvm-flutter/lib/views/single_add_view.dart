@@ -16,16 +16,10 @@ class AddGameView2 extends State<AddGameView> {
   bool isPressed1 = false;
   bool isPressed2 = false;
   bool isPressed3 = false;
-  UserGames list = UserGames();
-  @override
-  void initState() {
-    super.initState();
-    // list = Provider.of<UserGames>(
-    //     context); // pikmin is filler here, can use whatever
-  }
 
   @override
   Widget build(BuildContext context) {
+    final list = Provider.of<UserGames>(context);
     const fontSize = 16.0;
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/views/single_game_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
@@ -34,8 +35,8 @@ class Router {
         return MaterialPageRoute(
           builder: (_) =>
               //Feed(imdbID));
-              ChangeNotifierProvider(
-            create: (context) => AddGamesListViewModel(),
+              ChangeNotifierProvider<UserGames>(
+            create: (context) => UserGames(),
             child: AddGameView(oneGame: game),
           ),
         );
