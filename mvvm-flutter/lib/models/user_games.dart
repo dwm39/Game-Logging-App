@@ -20,7 +20,8 @@ class UserGames extends ChangeNotifier {
   void remove(VideoGameViewModel game) {
     for (int i = 0; i < items.length; i++) {
       if (game.id == items[i].id) {
-        remove(items[i]);
+        _favoriteItems.remove(items[i]);
+        notifyListeners();
         return;
       }
     }
