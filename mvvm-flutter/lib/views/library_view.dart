@@ -43,7 +43,7 @@ class FavoriteItemTile extends StatelessWidget {
           height: 1000,
         ),
         title: Text(itemNo.title),
-        subtitle: Text(itemNo.releaseDate),
+        subtitle: Text(itemNo.state),
         isThreeLine: true,
         onTap: () {});
   }

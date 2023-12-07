@@ -42,8 +42,14 @@ class AddList2 extends State<AddList> {
               bool toPlay = false;
               bool isPlaying = false;
               bool played = false;
-              if (widget.ids.items.contains(game.id)) {
-                print("this is pog");
+              String state = widget.users.getState(game);
+              if (state == "To Play") {
+                toPlay = true;
+              }
+              if (state == "Playing") {
+                isPlaying = true;
+              }
+              if (state == "Played") {
                 played = true;
               }
               Navigator.pushNamed(

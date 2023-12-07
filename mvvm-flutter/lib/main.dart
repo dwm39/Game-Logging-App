@@ -6,6 +6,7 @@ import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/views/add_view.dart';
 import 'package:mvvm_flutter/views/library_view.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
+import 'package:mvvm_flutter/models/video_game.dart';
 import 'package:provider/provider.dart';
 
 import 'router.dart' as LocalRouter;

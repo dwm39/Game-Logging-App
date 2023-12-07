@@ -196,22 +196,27 @@ class AddGameView2 extends State<AddGameView> {
               if (widget.toPlay) {
                 if (!widget.ids.items.contains(widget.oneGame.id)) {
                   widget.ids.add(widget.oneGame.id);
-                  print("to play");
+                  widget.users.add(widget.oneGame);
                 }
-
+                widget.users.remove(widget.oneGame);
+                widget.oneGame.state = "To Play";
                 widget.users.add(widget.oneGame);
               } else if (widget.isPlaying) {
                 if (!widget.ids.items.contains(widget.oneGame.id)) {
                   widget.ids.add(widget.oneGame.id);
                   widget.users.add(widget.oneGame);
-                  print("playing");
                 }
+                widget.users.remove(widget.oneGame);
+                widget.oneGame.state = "Playing";
+                widget.users.add(widget.oneGame);
               } else if (widget.played) {
                 if (!widget.ids.items.contains(widget.oneGame.id)) {
                   widget.ids.add(widget.oneGame.id);
                   widget.users.add(widget.oneGame);
-                  print("played");
                 }
+                widget.users.remove(widget.oneGame);
+                widget.oneGame.state = "Played";
+                widget.users.add(widget.oneGame);
               } else {
                 widget.ids.remove(widget.oneGame.id);
                 widget.users.remove(widget.oneGame);

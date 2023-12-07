@@ -38,6 +38,6 @@ class VideoGameViewModel {
   }
 
   set state(String state) {
-    this.state = state;
+    game.state = state;
   }
 }

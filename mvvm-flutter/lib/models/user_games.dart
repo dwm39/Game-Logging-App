@@ -26,4 +26,13 @@ class UserGames extends ChangeNotifier {
       }
     }
   }
+
+  String getState(VideoGameViewModel game) {
+    for (int i = 0; i < items.length; i++) {
+      if (game.id == items[i].id) {
+        return items[i].state;
+      }
+    }
+    return "placeholder";
+  }
 }
