@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/main.dart';
@@ -6,12 +7,16 @@ import 'package:mvvm_flutter/main.dart';
 class AddList extends StatefulWidget {
   final List<VideoGameViewModel> games;
   final UserGames users;
-  const AddList({super.key, required this.games, required this.users});
+  final UserGamesIds ids;
+  const AddList(
+      {super.key, required this.games, required this.users, required this.ids});
   @override
   AddList2 createState() => AddList2();
 }
 
 class AddList2 extends State<AddList> {
+  // try this tommorrow before working on speech // do the isPressed thing
+
   @override
   Widget build(BuildContext context) {
     final ButtonStyle style =
@@ -20,7 +25,6 @@ class AddList2 extends State<AddList> {
       itemCount: widget.games.length,
       itemBuilder: (context, index) {
         final game = widget.games[index];
-
         return ListTile(
             contentPadding: const EdgeInsets.all(10),
             leading: Container(
@@ -35,13 +39,28 @@ class AddList2 extends State<AddList> {
             subtitle: Text(game.releaseDate),
             isThreeLine: true,
             onTap: () {
+              bool toPlay = false;
+              bool isPlaying = false;
+              bool played = false;
+              if (widget.ids.items.contains(game.id)) {
+                print("this is pog");
+                played = true;
+              }
               Navigator.pushNamed(
                   context,
                   // MaterialPageRoute(
                   //     //builder: (context) => const ElevatedButtonExampleApp()),
                   //     builder: (context) => SingleGameView(1024)),
+
                   '/add',
-                  arguments: ({'oneGame': game, 'users': widget.users}));
+                  arguments: ({
+                    'oneGame': game,
+                    'users': widget.users,
+                    'ids': widget.ids,
+                    'toPlay': toPlay,
+                    'playing': isPlaying,
+                    'played': played,
+                  }));
             });
       },
     );

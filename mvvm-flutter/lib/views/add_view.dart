@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/widgets/add_list.dart';
@@ -8,7 +9,8 @@ import 'package:provider/provider.dart';
 
 class AddView extends StatefulWidget {
   UserGames users;
-  AddView({super.key, required this.users});
+  UserGamesIds ids;
+  AddView({super.key, required this.users, required this.ids});
 
   @override
   _AddListViewState createState() => _AddListViewState();
@@ -59,7 +61,8 @@ class _AddListViewState extends State<AddView> {
               Expanded(
                 child: AddList(
                     games: vm.videogames,
-                    users: widget.users), //we will create this further down
+                    users: widget.users,
+                    ids: widget.ids), //we will create this further down
               )
             ])));
   }

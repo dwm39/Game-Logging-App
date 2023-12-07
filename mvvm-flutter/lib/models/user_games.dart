@@ -10,7 +10,6 @@ class UserGames extends ChangeNotifier {
   void add(VideoGameViewModel game) {
     for (int i = 0; i < items.length; i++) {
       if (game.id == items[i].id) {
-        remove(items[i]);
         return;
       }
     }
@@ -19,7 +18,11 @@ class UserGames extends ChangeNotifier {
   }
 
   void remove(VideoGameViewModel game) {
-    _favoriteItems.remove(game);
-    notifyListeners();
+    for (int i = 0; i < items.length; i++) {
+      if (game.id == items[i].id) {
+        remove(items[i]);
+        return;
+      }
+    }
   }
 }

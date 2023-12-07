@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
@@ -144,6 +145,9 @@ class NavigationBarApp extends StatelessWidget {
           ChangeNotifierProvider(
             create: (context) => UserGames(),
           ),
+          ChangeNotifierProvider(
+            create: (context) => UserGamesIds(),
+          ),
         ],
         child: const NavigationExample(),
       ),
@@ -166,6 +170,7 @@ class _NavigationExampleState extends State<NavigationExample> {
   @override
   Widget build(BuildContext context) {
     final users = Provider.of<UserGames>(context);
+    final ids = Provider.of<UserGamesIds>(context);
     final ThemeData theme = Theme.of(context);
     return Scaffold(
       bottomNavigationBar: NavigationBar(
@@ -204,7 +209,7 @@ class _NavigationExampleState extends State<NavigationExample> {
           ChangeNotifierProvider(
             create: (context) => AddGamesListViewModel(),
           ),
-        ], child: AddView(users: users))),
+        ], child: AddView(users: users, ids: ids))),
         Scaffold(
             body: ChangeNotifierProvider(
           create: (context) => VideoGamesListViewModel(),

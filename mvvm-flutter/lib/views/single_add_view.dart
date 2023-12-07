@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/main.dart';
@@ -7,20 +8,28 @@ import 'package:provider/provider.dart';
 class AddGameView extends StatefulWidget {
   final VideoGameViewModel oneGame;
   final UserGames users;
-  const AddGameView({super.key, required this.oneGame, required this.users});
+  final UserGamesIds ids;
+  bool toPlay;
+  bool isPlaying;
+  bool played;
+  AddGameView(
+      {super.key,
+      required this.oneGame,
+      required this.users,
+      required this.ids,
+      required this.toPlay,
+      required this.isPlaying,
+      required this.played});
   @override
   AddGameView2 createState() => AddGameView2();
 }
 
 class AddGameView2 extends State<AddGameView> {
-  bool isPressed1 = false;
-  bool isPressed2 = false;
-  bool isPressed3 = false;
-
   @override
   Widget build(BuildContext context) {
-    bool containsGame = widget.users.items.contains(widget.oneGame);
+    //widget.oneGame.state = "To Play";
     const fontSize = 16.0;
+
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
     return Scaffold(
@@ -129,12 +138,14 @@ class AddGameView2 extends State<AddGameView> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: isPressed1 ? Colors.red : Colors.teal),
+                      backgroundColor:
+                          widget.toPlay ? Colors.red : Colors.teal),
                   onPressed: () {
+                    //widget.oneGame.state = "To Play";
                     setState(() {
-                      isPressed1 = true;
-                      isPressed2 = false;
-                      isPressed3 = false;
+                      widget.toPlay = !widget.toPlay;
+                      widget.isPlaying = false;
+                      widget.played = false;
                     });
                   },
                   child: const Text('To Play'),
@@ -143,12 +154,14 @@ class AddGameView2 extends State<AddGameView> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: isPressed2 ? Colors.red : Colors.teal),
+                      backgroundColor:
+                          widget.isPlaying ? Colors.red : Colors.teal),
                   onPressed: () {
+                    //widget.oneGame.state = "Playing";
                     setState(() {
-                      isPressed1 = false;
-                      isPressed2 = true;
-                      isPressed3 = false;
+                      widget.toPlay = false;
+                      widget.isPlaying = !widget.isPlaying;
+                      widget.played = false;
                     });
                   },
                   child: const Text('Playing'),
@@ -157,12 +170,14 @@ class AddGameView2 extends State<AddGameView> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       textStyle: const TextStyle(fontSize: 20),
-                      backgroundColor: isPressed3 ? Colors.red : Colors.teal),
+                      backgroundColor:
+                          widget.played ? Colors.red : Colors.teal),
                   onPressed: () {
+                    //widget.oneGame.state = "Played";
                     setState(() {
-                      isPressed1 = false;
-                      isPressed2 = false;
-                      isPressed3 = true;
+                      widget.toPlay = false;
+                      widget.isPlaying = false;
+                      widget.played = !widget.played;
                     });
                   },
                   child: const Text('Played'),
@@ -178,9 +193,36 @@ class AddGameView2 extends State<AddGameView> {
             style:
                 TextButton.styleFrom(backgroundColor: const Color(0xff777777)),
             onPressed: () {
-              !widget.users.items.contains(widget.oneGame)
-                  ? widget.users.add(widget.oneGame)
-                  : widget.users.remove(widget.oneGame);
+              if (widget.toPlay) {
+                if (!widget.ids.items.contains(widget.oneGame.id)) {
+                  widget.ids.add(widget.oneGame.id);
+                }
+
+                widget.users.add(widget.oneGame);
+              }
+              if (widget.isPlaying) {
+                if (!widget.ids.items.contains(widget.oneGame.id)) {
+                  widget.ids.add(widget.oneGame.id);
+                }
+
+                widget.users.add(widget.oneGame);
+              }
+              if (widget.played) {
+                if (!widget.ids.items.contains(widget.oneGame.id)) {
+                  widget.ids.add(widget.oneGame.id);
+                }
+
+                widget.users.add(widget.oneGame);
+              } else {
+                widget.ids.remove(widget.oneGame.id);
+                widget.users.add(widget.oneGame);
+              }
+              // !widget.ids.items.contains(widget.oneGame.id)
+              //     ? widget.ids.add(widget.oneGame.id)
+              //     : widget.ids.remove(widget.oneGame.id);
+              // !widget.users.items.contains(widget.oneGame)
+              //     ? widget.users.add(widget.oneGame)
+              //     : widget.users.remove(widget.oneGame);
               Navigator.pop(context);
             },
             child: const Text('Submit'),

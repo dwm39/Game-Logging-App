@@ -34,12 +34,22 @@ class Router {
         final arg = settings.arguments as Map;
         final game = arg['oneGame'];
         final users = arg['users'];
+        final ids = arg['ids'];
+        bool toPlay = arg['toPlay'];
+        bool isPlaying = arg['playing'];
+        bool played = arg['played'];
         return MaterialPageRoute(
           builder: (_) =>
               //Feed(imdbID));
               ChangeNotifierProvider<UserGames>(
             create: (context) => UserGames(),
-            child: AddGameView(oneGame: game, users: users),
+            child: AddGameView(
+                oneGame: game,
+                users: users,
+                ids: ids,
+                toPlay: toPlay,
+                isPlaying: isPlaying,
+                played: played),
           ),
         );
 

@@ -6,6 +6,7 @@ class VideoGame {
   final String synopsis;
   final String summary;
   final String rating;
+  String state;
 
   VideoGame(
       {required this.id,
@@ -14,7 +15,8 @@ class VideoGame {
       required this.releaseDate,
       required this.synopsis,
       required this.summary,
-      required this.rating});
+      required this.rating,
+      required this.state});
 
   factory VideoGame.fromJson(Map<String, dynamic> json) {
     String releaseDateHuman = "TBD";
@@ -38,13 +40,13 @@ class VideoGame {
     }
 
     return VideoGame(
-      id: json["id"],
-      title: json["name"],
-      posterUrl: 'http:$jsonStuff',
-      releaseDate: releaseDateHuman,
-      synopsis: summary,
-      summary: summary,
-      rating: rating2,
-    );
+        id: json["id"],
+        title: json["name"],
+        posterUrl: 'http:$jsonStuff',
+        releaseDate: releaseDateHuman,
+        synopsis: summary,
+        summary: summary,
+        rating: rating2,
+        state: "");
   }
 }

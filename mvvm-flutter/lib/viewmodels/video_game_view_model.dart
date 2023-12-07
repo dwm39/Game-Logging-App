@@ -32,4 +32,12 @@ class VideoGameViewModel {
   String get rating {
     return game.rating;
   }
+
+  String get state {
+    return game.state;
+  }
+
+  set state(String state) {
+    this.state = state;
+  }
 }
