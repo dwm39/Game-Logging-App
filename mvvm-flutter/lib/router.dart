@@ -31,13 +31,15 @@ class Router {
                 ));
 
       case '/add':
-        final game = settings.arguments as VideoGameViewModel;
+        final arg = settings.arguments as Map;
+        final game = arg['oneGame'];
+        final users = arg['users'];
         return MaterialPageRoute(
           builder: (_) =>
               //Feed(imdbID));
               ChangeNotifierProvider<UserGames>(
             create: (context) => UserGames(),
-            child: AddGameView(oneGame: game),
+            child: AddGameView(oneGame: game, users: users),
           ),
         );
 

@@ -10,10 +10,12 @@ class UserGames extends ChangeNotifier {
   void add(VideoGameViewModel game) {
     _favoriteItems.add(game);
     notifyListeners();
+    print(items.length);
   }
 
-  void remove(VideoGameViewModel itemNo) {
-    _favoriteItems.remove(itemNo);
+  void remove(VideoGameViewModel game) {
+    _favoriteItems.remove(game);
     notifyListeners();
+    print(items.length);
   }
 }

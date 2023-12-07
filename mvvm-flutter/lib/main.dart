@@ -3,6 +3,8 @@ import 'package:mvvm_flutter/views/video_games_list_view.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
 import 'package:mvvm_flutter/viewmodels/add_games_list_view_model.dart';
 import 'package:mvvm_flutter/views/add_view.dart';
+import 'package:mvvm_flutter/views/library_view.dart';
+import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:provider/provider.dart';
 
 import 'router.dart' as LocalRouter;
@@ -35,9 +37,16 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.teal),
-      home: ChangeNotifierProvider(
-        create: (context) => VideoGamesListViewModel(),
-        child: const BottomNavigationBarExample(),
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => VideoGamesListViewModel(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => UserGames(),
+          ),
+        ],
+        child: const BottomNavigationBarExampleApp(),
       ),
       onGenerateRoute: LocalRouter.Router.generateRoute,
       initialRoute: '/',
@@ -50,8 +59,10 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: BottomNavigationBarExample(),
+    final users = Provider.of<UserGames>(context);
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.teal),
+      home: BottomNavigationBarExample(users: users),
       onGenerateRoute: LocalRouter.Router.generateRoute,
       initialRoute: '/',
     );
@@ -59,7 +70,8 @@ class BottomNavigationBarExampleApp extends StatelessWidget {
 }
 
 class BottomNavigationBarExample extends StatefulWidget {
-  const BottomNavigationBarExample({super.key});
+  UserGames users;
+  BottomNavigationBarExample({super.key, required this.users});
 
   @override
   State<BottomNavigationBarExample> createState() =>
@@ -78,14 +90,19 @@ class _BottomNavigationBarExampleState
       child: const GameListView(),
     )),
     Scaffold(
+        body: MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => AddGamesListViewModel(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => UserGames(),
+      ),
+    ], child: AddView())),
+    Scaffold(
         body: ChangeNotifierProvider(
-      create: (context) => AddGamesListViewModel(),
-      child: const AddView(),
+      create: (context) => UserGames(),
+      child: const FavoritesPage(),
     )),
-    const Scaffold(
-      body: Center(child: Text('This will be the Library pleease')),
-      //same here
-    ),
   ];
 
   void _onItemTapped(int index) {
@@ -96,6 +113,7 @@ class _BottomNavigationBarExampleState
 
   @override
   Widget build(BuildContext context) {
+    final users = Provider.of<UserGames>(context);
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

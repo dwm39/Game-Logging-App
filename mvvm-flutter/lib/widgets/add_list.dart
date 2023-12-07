@@ -5,8 +5,8 @@ import 'package:mvvm_flutter/main.dart';
 
 class AddList extends StatefulWidget {
   final List<VideoGameViewModel> games;
-
-  const AddList({super.key, required this.games});
+  final UserGames users;
+  const AddList({super.key, required this.games, required this.users});
   @override
   AddList2 createState() => AddList2();
 }
@@ -41,7 +41,7 @@ class AddList2 extends State<AddList> {
                   //     //builder: (context) => const ElevatedButtonExampleApp()),
                   //     builder: (context) => SingleGameView(1024)),
                   '/add',
-                  arguments: (game));
+                  arguments: ({'oneGame': game, 'users': widget.users}));
             });
       },
     );

@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 class AddGameView extends StatefulWidget {
   final VideoGameViewModel oneGame;
-
-  const AddGameView({super.key, required this.oneGame});
+  final UserGames users;
+  const AddGameView({super.key, required this.oneGame, required this.users});
   @override
   AddGameView2 createState() => AddGameView2();
 }
@@ -19,7 +19,6 @@ class AddGameView2 extends State<AddGameView> {
 
   @override
   Widget build(BuildContext context) {
-    final list = Provider.of<UserGames>(context);
     const fontSize = 16.0;
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
@@ -178,10 +177,9 @@ class AddGameView2 extends State<AddGameView> {
             style:
                 TextButton.styleFrom(backgroundColor: const Color(0xff777777)),
             onPressed: () {
-              !list.items.contains(widget.oneGame)
-                  ? list.add(widget.oneGame)
-                  : list.remove(widget.oneGame);
-              Navigator.pop(context);
+              !widget.users.items.contains(widget.oneGame)
+                  ? widget.users.add(widget.oneGame)
+                  : widget.users.remove(widget.oneGame);
             },
             child: const Text('Submit'),
           ),

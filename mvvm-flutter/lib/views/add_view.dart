@@ -26,7 +26,7 @@ class _AddListViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<AddGamesListViewModel>(context);
-
+    final users = Provider.of<UserGames>(context);
     return Scaffold(
         appBar: AppBar(title: const Text('Add Games')),
         body: Container(
@@ -58,7 +58,8 @@ class _AddListViewState extends State<AddView> {
 
               Expanded(
                 child: AddList(
-                    games: vm.videogames), //we will create this further down
+                    games: vm.videogames,
+                    users: users), //we will create this further down
               )
             ])));
   }
