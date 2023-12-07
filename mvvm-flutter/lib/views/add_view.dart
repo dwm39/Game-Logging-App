@@ -7,7 +7,8 @@ import 'package:mvvm_flutter/widgets/add_list.dart';
 import 'package:provider/provider.dart';
 
 class AddView extends StatefulWidget {
-  const AddView({super.key});
+  UserGames users;
+  AddView({super.key, required this.users});
 
   @override
   _AddListViewState createState() => _AddListViewState();
@@ -26,7 +27,6 @@ class _AddListViewState extends State<AddView> {
   @override
   Widget build(BuildContext context) {
     final vm = Provider.of<AddGamesListViewModel>(context);
-    final users = Provider.of<UserGames>(context);
     return Scaffold(
         appBar: AppBar(title: const Text('Add Games')),
         body: Container(
@@ -59,7 +59,7 @@ class _AddListViewState extends State<AddView> {
               Expanded(
                 child: AddList(
                     games: vm.videogames,
-                    users: users), //we will create this further down
+                    users: widget.users), //we will create this further down
               )
             ])));
   }

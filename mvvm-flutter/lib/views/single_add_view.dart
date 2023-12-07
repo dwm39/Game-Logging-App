@@ -19,6 +19,7 @@ class AddGameView2 extends State<AddGameView> {
 
   @override
   Widget build(BuildContext context) {
+    bool containsGame = widget.users.items.contains(widget.oneGame);
     const fontSize = 16.0;
     final ButtonStyle style =
         ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
@@ -180,6 +181,7 @@ class AddGameView2 extends State<AddGameView> {
               !widget.users.items.contains(widget.oneGame)
                   ? widget.users.add(widget.oneGame)
                   : widget.users.remove(widget.oneGame);
+              Navigator.pop(context);
             },
             child: const Text('Submit'),
           ),

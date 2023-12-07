@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 class FavoritesPage extends StatelessWidget {
   static String routeName = '/favorites_page';
-
-  const FavoritesPage({super.key});
+  UserGames users;
+  FavoritesPage({super.key, required this.users});
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +15,10 @@ class FavoritesPage extends StatelessWidget {
         title: const Text('Favorites'),
       ),
       body: Consumer<UserGames>(
-        builder: (context, value, child) => ListView.builder(
-          itemCount: value.items.length,
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          itemBuilder: (context, index) => FavoriteItemTile(value.items[index]),
+        builder: (context, users2, child) => ListView.builder(
+          itemCount: users2.items.length,
+          itemBuilder: (context, index) =>
+              FavoriteItemTile(users2.items[index]),
         ),
       ),
     );
@@ -32,29 +32,19 @@ class FavoriteItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.primaries[Colors.primaries.length],
+    return ListTile(
+        contentPadding: const EdgeInsets.all(10),
+        leading: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.cover, image: NetworkImage(itemNo.poster)),
+              borderRadius: BorderRadius.circular(6)),
+          width: 50,
+          height: 1000,
         ),
-        title: Text(
-          'Item $itemNo',
-          key: Key('favorites_text_$itemNo'),
-        ),
-        trailing: IconButton(
-          key: Key('remove_icon_$itemNo'),
-          icon: const Icon(Icons.close),
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Removed from favorites.'),
-                duration: Duration(seconds: 1),
-              ),
-            );
-          },
-        ),
-      ),
-    );
+        title: Text(itemNo.title),
+        subtitle: Text(itemNo.releaseDate),
+        isThreeLine: true,
+        onTap: () {});
   }
 }
