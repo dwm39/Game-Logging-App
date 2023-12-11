@@ -52,13 +52,7 @@ class AddList2 extends State<AddList> {
               if (state == "Played") {
                 played = true;
               }
-              Navigator.pushNamed(
-                  context,
-                  // MaterialPageRoute(
-                  //     //builder: (context) => const ElevatedButtonExampleApp()),
-                  //     builder: (context) => SingleGameView(1024)),
-
-                  '/add',
+              Navigator.pushNamed(context, '/add',
                   arguments: ({
                     'oneGame': game,
                     'users': widget.users,

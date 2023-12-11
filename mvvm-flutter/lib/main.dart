@@ -96,7 +96,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         Scaffold(
             body: ChangeNotifierProvider(
           create: (context) => VideoGamesListViewModel(),
-          child: FavoritesPage(users: users),
+          child: FavoritesPage(users: users, ids: ids),
         )),
       ][currentPageIndex],
     );

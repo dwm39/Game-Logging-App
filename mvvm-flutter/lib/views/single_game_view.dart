@@ -158,7 +158,11 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
         ),
         const SizedBox(width: 30),
         ElevatedButton(
-          style: style,
+          // change background color for if game is in a state
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            textStyle: const TextStyle(fontSize: 20),
+          ),
           onPressed: () {},
           child: const Text('Played'),
         ),
