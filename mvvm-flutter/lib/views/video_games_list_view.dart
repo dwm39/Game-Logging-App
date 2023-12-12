@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/viewmodels/video_games_list_view_model.dart';
+import 'package:mvvm_flutter/models/user_games.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/widgets/games_list.dart';
 
 import 'package:provider/provider.dart';
 
 class GameListView extends StatefulWidget {
-  const GameListView({super.key});
+  UserGames users;
+  UserGamesIds ids;
+  GameListView({super.key, required this.users, required this.ids});
 
   @override
   _GameListViewState createState() => _GameListViewState();
@@ -56,7 +60,9 @@ class _GameListViewState extends State<GameListView> {
 
               Expanded(
                   child: GameList(
-                      games: vm.videogames)), //we will create this further down
+                      games: vm.videogames,
+                      users: widget.users,
+                      ids: widget.ids)), //we will create this further down
             ])));
   }
 }

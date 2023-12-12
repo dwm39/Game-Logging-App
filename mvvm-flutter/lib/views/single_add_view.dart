@@ -118,7 +118,7 @@ class AddGameView2 extends State<AddGameView> {
                     minLines: 6,
                     readOnly: true,
                     decoration: InputDecoration(
-                      labelText: 'Comming Soon',
+                      labelText: 'Coming Soon',
                       border: OutlineInputBorder(),
                     ),
                   ),

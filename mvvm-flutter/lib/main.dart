@@ -85,7 +85,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         Scaffold(
             body: ChangeNotifierProvider(
           create: (context) => VideoGamesListViewModel(),
-          child: const GameListView(),
+          child: GameListView(users: users, ids: ids),
         )),
         Scaffold(
             body: MultiProvider(providers: [

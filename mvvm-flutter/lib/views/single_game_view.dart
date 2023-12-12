@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:mvvm_flutter/models/user_games.dart';
+import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 
 class SingleGameView extends StatelessWidget {
   final VideoGameViewModel oneGame;
+  final UserGames users;
+  final UserGamesIds ids;
+  bool toPlay;
+  bool isPlaying;
+  bool played;
 
-  const SingleGameView(this.oneGame, {super.key});
+  SingleGameView(
+      {super.key,
+      required this.oneGame,
+      required this.users,
+      required this.ids,
+      required this.toPlay,
+      required this.isPlaying,
+      required this.played});
   @override
   Widget build(BuildContext context) {
     final vm = oneGame;
@@ -105,7 +119,13 @@ class SingleGameView extends StatelessWidget {
             ],
           ),
           Container(height: 50),
-          const ElevatedButtonExample()
+          ElevatedButtonExample(
+              oneGame: oneGame,
+              users: users,
+              ids: ids,
+              toPlay: toPlay,
+              isPlaying: isPlaying,
+              played: played)
         ])));
   }
 }
@@ -113,7 +133,20 @@ class SingleGameView extends StatelessWidget {
 /// Flutter code sample for [ElevatedButton].
 
 class ElevatedButtonExampleApp extends StatelessWidget {
-  const ElevatedButtonExampleApp({super.key});
+  final VideoGameViewModel oneGame;
+  final UserGames users;
+  final UserGamesIds ids;
+  bool toPlay;
+  bool isPlaying;
+  bool played;
+  ElevatedButtonExampleApp(
+      {super.key,
+      required this.oneGame,
+      required this.users,
+      required this.ids,
+      required this.toPlay,
+      required this.isPlaying,
+      required this.played});
 
   @override
   Widget build(BuildContext context) {
@@ -121,14 +154,33 @@ class ElevatedButtonExampleApp extends StatelessWidget {
         home: SingleChildScrollView(
       child: Scaffold(
         appBar: AppBar(title: const Text('Single Game View')),
-        body: const ElevatedButtonExample(),
+        body: ElevatedButtonExample(
+            oneGame: oneGame,
+            users: users,
+            ids: ids,
+            toPlay: toPlay,
+            isPlaying: isPlaying,
+            played: played),
       ),
     ));
   }
 }
 
 class ElevatedButtonExample extends StatefulWidget {
-  const ElevatedButtonExample({super.key});
+  final VideoGameViewModel oneGame;
+  final UserGames users;
+  final UserGamesIds ids;
+  bool toPlay;
+  bool isPlaying;
+  bool played;
+  ElevatedButtonExample(
+      {super.key,
+      required this.oneGame,
+      required this.users,
+      required this.ids,
+      required this.toPlay,
+      required this.isPlaying,
+      required this.played});
 
   @override
   State<ElevatedButtonExample> createState() => _ElevatedButtonExampleState();
@@ -146,13 +198,17 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
         child: SingleChildScrollView(
       child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
         ElevatedButton(
-          style: style,
+          style: ElevatedButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+              backgroundColor: widget.toPlay ? Colors.red : Colors.teal),
           onPressed: () {},
           child: const Text('To Play'),
         ),
         const SizedBox(width: 30),
         ElevatedButton(
-          style: style,
+          style: ElevatedButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+              backgroundColor: widget.isPlaying ? Colors.red : Colors.teal),
           onPressed: () {},
           child: const Text('Playing'),
         ),
@@ -160,9 +216,8 @@ class _ElevatedButtonExampleState extends State<ElevatedButtonExample> {
         ElevatedButton(
           // change background color for if game is in a state
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.red,
-            textStyle: const TextStyle(fontSize: 20),
-          ),
+              textStyle: const TextStyle(fontSize: 20),
+              backgroundColor: widget.played ? Colors.red : Colors.teal),
           onPressed: () {},
           child: const Text('Played'),
         ),

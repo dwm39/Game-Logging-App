@@ -15,19 +15,33 @@ class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
+        final arg = settings.arguments as Map;
+        final users = arg['users'];
+        final ids = arg['ids'];
         return MaterialPageRoute(
             builder: (_) => ChangeNotifierProvider(
                   create: (context) => VideoGamesListViewModel(),
-                  child: const GameListView(),
+                  child: GameListView(users: users, ids: ids),
                 ));
       case '/details':
-        var oneGame = settings.arguments as VideoGameViewModel;
+        // var oneGame = settings.arguments as VideoGameViewModel;
+        final arg = settings.arguments as Map;
+        final game = arg['oneGame'];
+        final users = arg['users'];
+        final ids = arg['ids'];
+        bool toPlay = arg['toPlay'];
+        bool isPlaying = arg['playing'];
+        bool played = arg['played'];
         return MaterialPageRoute(
-            builder: (_) =>
-                //Feed(imdbID));
-                ChangeNotifierProvider(
+            builder: (_) => ChangeNotifierProvider(
                   create: (context) => VideoGamesListViewModel(),
-                  child: SingleGameView(oneGame),
+                  child: SingleGameView(
+                      oneGame: game,
+                      users: users,
+                      ids: ids,
+                      toPlay: toPlay,
+                      isPlaying: isPlaying,
+                      played: played),
                 ));
 
       case '/add':
@@ -39,9 +53,7 @@ class Router {
         bool isPlaying = arg['playing'];
         bool played = arg['played'];
         return MaterialPageRoute(
-          builder: (_) =>
-              //Feed(imdbID));
-              ChangeNotifierProvider<UserGames>(
+          builder: (_) => ChangeNotifierProvider<UserGames>(
             create: (context) => UserGames(),
             child: AddGameView(
                 oneGame: game,
