@@ -40,14 +40,13 @@ class AddGameView2 extends State<AddGameView> {
       widget.users.items.forEach((element) {
         if (element.id == widget.oneGame.id) {
           widget.oneGame = element;
+          rating = double.parse(widget.oneGame.rating);
         }
       });
     }
     // Make sure the text field and the thing being controlled by the text field have the review, if applicable.
     _controller.text = widget.oneGame.review;
     widget.review = widget.oneGame.review;
-
-    rating = double.parse(widget.oneGame.rating);
   }
 
   void updateRating(int value) {}

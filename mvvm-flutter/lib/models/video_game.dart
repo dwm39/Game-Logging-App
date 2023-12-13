@@ -35,7 +35,7 @@ class VideoGame {
       summary = json["summary"];
     }
     double rating = 0;
-    String rating2 = "Rating Not Available";
+    String rating2 = "0";
     if (json["rating"] != null) {
       rating = json["rating"];
       rating2 = rating.toStringAsFixed(1);
@@ -48,7 +48,7 @@ class VideoGame {
         releaseDate: releaseDateHuman,
         synopsis: summary,
         summary: summary,
-        rating: "0",
+        rating: rating2,
         state: "",
         review: "");
   }

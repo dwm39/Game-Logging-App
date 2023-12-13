@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
+import 'package:mvvm_flutter/widgets/star_rating.dart';
 
 class SingleGameView extends StatelessWidget {
   final VideoGameViewModel oneGame;
@@ -65,23 +66,6 @@ class SingleGameView extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
-                    "Rating:",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: fontSize),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    vm.rating,
-                    style: const TextStyle(fontSize: fontSize),
-                  ),
-                ),
-              ]),
-              TableRow(children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                  child: Text(
                     "Release Date:",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: fontSize),
@@ -95,6 +79,19 @@ class SingleGameView extends StatelessWidget {
                     style: const TextStyle(fontSize: fontSize),
                   ),
                 ),
+              ]),
+              TableRow(children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  child: Text(
+                    "Rating:",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: fontSize),
+                  ),
+                ),
+                StarRating(
+                    rating: double.parse(oneGame.rating) / 20.0,
+                    onRatingChanged: (rating) => {}),
               ]),
               TableRow(children: <Widget>[
                 const Padding(
