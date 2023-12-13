@@ -97,23 +97,6 @@ class AddGameView2 extends State<AddGameView> {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
-                    "Rating:",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: fontSize),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    widget.oneGame.rating,
-                    style: const TextStyle(fontSize: fontSize),
-                  ),
-                ),
-              ]),
-              TableRow(children: <Widget>[
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
-                  child: Text(
                     "Release Date:",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: fontSize),
