@@ -4,26 +4,146 @@ import 'package:mvvm_flutter/models/user_games_id.dart';
 import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:provider/provider.dart';
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
   static String routeName = '/favorites_page';
   UserGames users;
   UserGamesIds ids;
   FavoritesPage({super.key, required this.users, required this.ids});
 
   @override
+  _FavoritesPageState createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  final TextEditingController _controller = TextEditingController();
+
+  List<VideoGameViewModel> searchResults = [];
+  List<VideoGameViewModel> filterResults = [];
+
+  String filter = "";
+
+  @override
+  void initState() {
+    super.initState();
+    updateSearchResults("");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Favorites'),
-      ),
-      body: Consumer<UserGames>(
-        builder: (context, users2, child) => ListView.builder(
-          itemCount: users2.items.length,
-          itemBuilder: (context, index) =>
-              FavoriteItemTile(users2.items[index], users, ids),
+        appBar: AppBar(
+          title: const Text('Favorites'),
         ),
-      ),
-    );
+        body: Container(
+            padding: const EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            child: Column(children: <Widget>[
+              // ====================================
+              // Search Bar
+              // ====================================
+              Container(
+                padding: const EdgeInsets.only(left: 10),
+                decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(10)),
+                child: TextField(
+                  controller: _controller,
+                  onSubmitted: (value) {
+                    updateSearchResults(value);
+                  },
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(
+                      hintText: "Search",
+                      hintStyle: TextStyle(color: Colors.white),
+                      border: InputBorder.none),
+                ),
+              ),
+              // ====================================
+              // Sort buttons
+              // ====================================
+              Container(height: 20),
+              Center(
+                  child: SingleChildScrollView(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                          backgroundColor:
+                              filter == "To Play" ? Colors.red : Colors.teal),
+                      onPressed: () {
+                        filter = filter == "To Play" ? "" : "To Play";
+                        changeFilter(filter);
+                      },
+                      child: const Text('To Play'),
+                    ),
+                    const SizedBox(width: 30),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                          backgroundColor:
+                              filter == "Playing" ? Colors.red : Colors.teal),
+                      onPressed: () {
+                        filter = filter == "Playing" ? "" : "Playing";
+                        changeFilter(filter);
+                      },
+                      child: const Text('Playing'),
+                    ),
+                    const SizedBox(width: 30),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                          backgroundColor:
+                              filter == "Played" ? Colors.red : Colors.teal),
+                      onPressed: () {
+                        filter = filter == "Played" ? "" : "Played";
+                        changeFilter(filter);
+                      },
+                      child: const Text('Played'),
+                    ),
+                  ],
+                ),
+              )),
+              // ====================================
+              // List
+              // ====================================
+              Expanded(
+                  child: Consumer<UserGames>(
+                builder: (context, _, child) => ListView.builder(
+                  itemCount: filterResults.length,
+                  itemBuilder: (context, index) => FavoriteItemTile(
+                      filterResults[index], widget.users, widget.ids),
+                ),
+              ))
+            ])));
+  }
+
+  updateSearchResults(String text) async {
+    searchResults.clear();
+
+    // Filter out all entries that do not follow the search criteria.
+    widget.users.items.forEach((element) {
+      if (element.title.toLowerCase().contains(text.toLowerCase())) {
+        searchResults.add(element);
+      }
+    });
+
+    // Refresh list.
+    changeFilter(filter);
+  }
+
+  changeFilter(String type) async {
+    filterResults.clear();
+
+    searchResults.forEach(((element) {
+      if (element.state.contains(type)) {
+        filterResults.add(element);
+      }
+    }));
+
+    setState(() {});
   }
 }
 

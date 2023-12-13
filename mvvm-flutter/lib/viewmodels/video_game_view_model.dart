@@ -1,6 +1,6 @@
 import 'package:mvvm_flutter/models/video_game.dart';
 
-class VideoGameViewModel {
+class VideoGameViewModel implements Comparable {
   final VideoGame game;
 
   VideoGameViewModel({required this.game});
@@ -39,5 +39,13 @@ class VideoGameViewModel {
 
   set state(String state) {
     game.state = state;
+  }
+
+  @override
+  int compareTo(other) {
+    if (this.game.title == null || other == null) {
+      return 0;
+    }
+    return this.game.title.compareTo(other.game.title);
   }
 }
