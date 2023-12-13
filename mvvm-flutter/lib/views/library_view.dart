@@ -21,11 +21,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
   List<VideoGameViewModel> filterResults = [];
 
   String filter = "";
+  String searchquery = "";
 
   @override
   void initState() {
     super.initState();
-    updateSearchResults("");
+    updateList();
   }
 
   @override
@@ -50,7 +51,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 child: TextField(
                   controller: _controller,
                   onSubmitted: (value) {
-                    updateSearchResults(value);
+                    searchquery = value;
+                    updateList();
                   },
                   style: const TextStyle(color: Colors.white),
                   decoration: const InputDecoration(
@@ -75,7 +77,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               filter == "To Play" ? Colors.red : Colors.teal),
                       onPressed: () {
                         filter = filter == "To Play" ? "" : "To Play";
-                        changeFilter(filter);
+                        updateList();
                       },
                       child: const Text('To Play'),
                     ),
@@ -87,7 +89,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               filter == "Playing" ? Colors.red : Colors.teal),
                       onPressed: () {
                         filter = filter == "Playing" ? "" : "Playing";
-                        changeFilter(filter);
+                        updateList();
                       },
                       child: const Text('Playing'),
                     ),
@@ -99,7 +101,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               filter == "Played" ? Colors.red : Colors.teal),
                       onPressed: () {
                         filter = filter == "Played" ? "" : "Played";
-                        changeFilter(filter);
+                        updateList();
                       },
                       child: const Text('Played'),
                     ),
@@ -120,25 +122,23 @@ class _FavoritesPageState extends State<FavoritesPage> {
             ])));
   }
 
-  updateSearchResults(String text) async {
+  updateList() async {
+    // Filter by search.
     searchResults.clear();
 
     // Filter out all entries that do not follow the search criteria.
     widget.users.items.forEach((element) {
-      if (element.title.toLowerCase().contains(text.toLowerCase())) {
+      if (element.title.toLowerCase().contains(searchquery.toLowerCase())) {
         searchResults.add(element);
       }
     });
 
-    // Refresh list.
-    changeFilter(filter);
-  }
-
-  changeFilter(String type) async {
+    // Filter based on the state.
     filterResults.clear();
 
+    // Filter out all entries that do not have the correct state.
     searchResults.forEach(((element) {
-      if (element.state.contains(type)) {
+      if (element.state.contains(filter)) {
         filterResults.add(element);
       }
     }));
