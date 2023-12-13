@@ -7,6 +7,7 @@ class VideoGame {
   final String summary;
   final String rating;
   String state;
+  String review;
 
   VideoGame(
       {required this.id,
@@ -16,7 +17,8 @@ class VideoGame {
       required this.synopsis,
       required this.summary,
       required this.rating,
-      required this.state});
+      required this.state,
+      required this.review});
 
   factory VideoGame.fromJson(Map<String, dynamic> json) {
     String releaseDateHuman = "TBD";
@@ -47,6 +49,7 @@ class VideoGame {
         synopsis: summary,
         summary: summary,
         rating: rating2,
-        state: "");
+        state: "",
+        review: "");
   }
 }

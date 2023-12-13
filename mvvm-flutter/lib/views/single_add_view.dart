@@ -12,6 +12,9 @@ class AddGameView extends StatefulWidget {
   bool toPlay;
   bool isPlaying;
   bool played;
+
+  String review = "";
+
   AddGameView(
       {super.key,
       required this.oneGame,
@@ -25,6 +28,17 @@ class AddGameView extends StatefulWidget {
 }
 
 class AddGameView2 extends State<AddGameView> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Make sure the text field and the thing being controlled by the text field have the review, if applicable.
+    _controller.text = widget.oneGame.review;
+    widget.review = widget.oneGame.review;
+  }
+
   @override
   Widget build(BuildContext context) {
     //widget.oneGame.state = "To Play";
@@ -101,8 +115,8 @@ class AddGameView2 extends State<AddGameView> {
                   ),
                 ),
               ]),
-              const TableRow(children: <Widget>[
-                Padding(
+              TableRow(children: <Widget>[
+                const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
                     "Review:",
@@ -111,17 +125,20 @@ class AddGameView2 extends State<AddGameView> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(2),
+                  padding: EdgeInsets.all(10),
                   child: TextField(
-                    style: TextStyle(fontSize: 25),
-                    maxLines: 6,
-                    minLines: 6,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: 'Coming Soon',
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                      controller: _controller,
+                      style: const TextStyle(fontSize: fontSize),
+                      maxLines: 6,
+                      minLines: 6,
+                      readOnly: false,
+                      decoration: const InputDecoration(
+                        labelText: 'Personal Review',
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (String newText) {
+                        widget.review = newText;
+                      }),
                 ),
               ]),
             ],
@@ -193,6 +210,7 @@ class AddGameView2 extends State<AddGameView> {
             style:
                 TextButton.styleFrom(backgroundColor: const Color(0xff777777)),
             onPressed: () {
+              widget.oneGame.review = widget.review;
               if (widget.toPlay) {
                 if (!widget.ids.items.contains(widget.oneGame.id)) {
                   widget.ids.add(widget.oneGame.id);

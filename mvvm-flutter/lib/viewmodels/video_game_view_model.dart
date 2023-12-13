@@ -41,6 +41,14 @@ class VideoGameViewModel implements Comparable {
     game.state = state;
   }
 
+  String get review {
+    return game.review;
+  }
+
+  set review(String review) {
+    game.review = review;
+  }
+
   @override
   int compareTo(other) {
     if (this.game.title == null || other == null) {
