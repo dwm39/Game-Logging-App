@@ -33,6 +33,10 @@ class VideoGameViewModel implements Comparable {
     return game.rating;
   }
 
+  set rating(String rating) {
+    game.rating = rating;
+  }
+
   String get state {
     return game.state;
   }

@@ -4,9 +4,10 @@ import 'package:mvvm_flutter/viewmodels/video_game_view_model.dart';
 import 'package:mvvm_flutter/models/user_games.dart';
 import 'package:mvvm_flutter/main.dart';
 import 'package:provider/provider.dart';
+import 'package:mvvm_flutter/widgets/star_rating.dart';
 
 class AddGameView extends StatefulWidget {
-  final VideoGameViewModel oneGame;
+  VideoGameViewModel oneGame;
   final UserGames users;
   final UserGamesIds ids;
   bool toPlay;
@@ -29,15 +30,27 @@ class AddGameView extends StatefulWidget {
 
 class AddGameView2 extends State<AddGameView> {
   final TextEditingController _controller = TextEditingController();
+  double rating = 0;
 
   @override
   void initState() {
     super.initState();
 
+    if (widget.ids.items.contains(widget.oneGame.id)) {
+      widget.users.items.forEach((element) {
+        if (element.id == widget.oneGame.id) {
+          widget.oneGame = element;
+        }
+      });
+    }
     // Make sure the text field and the thing being controlled by the text field have the review, if applicable.
     _controller.text = widget.oneGame.review;
     widget.review = widget.oneGame.review;
+
+    rating = double.parse(widget.oneGame.rating);
   }
+
+  void updateRating(int value) {}
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +132,22 @@ class AddGameView2 extends State<AddGameView> {
                 const Padding(
                   padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
                   child: Text(
-                    "Review:",
+                    "Personal Rating:",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: fontSize),
+                  ),
+                ),
+                StarRating(
+                  rating: rating,
+                  onRatingChanged: (rating) =>
+                      setState(() => this.rating = rating),
+                ),
+              ]),
+              TableRow(children: <Widget>[
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(10, 2, 10, 2),
+                  child: Text(
+                    "Personal Review:",
                     style: TextStyle(
                         fontWeight: FontWeight.bold, fontSize: fontSize),
                   ),
@@ -211,6 +239,7 @@ class AddGameView2 extends State<AddGameView> {
                 TextButton.styleFrom(backgroundColor: const Color(0xff777777)),
             onPressed: () {
               widget.oneGame.review = widget.review;
+              widget.oneGame.rating = rating.toString();
               if (widget.toPlay) {
                 if (!widget.ids.items.contains(widget.oneGame.id)) {
                   widget.ids.add(widget.oneGame.id);

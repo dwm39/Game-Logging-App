@@ -5,7 +5,7 @@ class VideoGame {
   final String releaseDate;
   final String synopsis;
   final String summary;
-  final String rating;
+  String rating;
   String state;
   String review;
 
@@ -48,7 +48,7 @@ class VideoGame {
         releaseDate: releaseDateHuman,
         synopsis: summary,
         summary: summary,
-        rating: rating2,
+        rating: "0",
         state: "",
         review: "");
   }
